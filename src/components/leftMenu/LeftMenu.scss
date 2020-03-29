@@ -1,0 +1,151 @@
+.card {
+  display: grid;
+  grid-template-columns: 3rem auto;
+  grid-gap: 0.5rem;
+  color: rgb(231, 231, 231);
+  padding: 0.8rem;
+  cursor: pointer;
+  position: relative;
+}
+
+.mat-icon {
+  display: flex;
+  place-items: center;
+  i {
+    font-weight: 400;
+    font-size: 2.2rem;
+  }
+}
+
+.leftbar {
+  flex: 1 0 15%;
+  background-color: #00424c;
+  height: calc(100vh - 8rem);
+
+  &__actions {
+    margin: 2rem 0;
+
+    &__item {
+      @extend .card;
+
+      &:hover {
+        background-color: #01323a;
+      }
+
+      &--active {
+        background-color: #002930;
+        &:hover {
+          background-color: #002930;
+        }
+        .leftbar__actions__item__content {
+          font-weight: bold;
+        }
+        .leftbar__actions__item__icon {
+          color: #0098af;
+        }
+      }
+
+      &__icon {
+        @extend .mat-icon;
+      }
+
+      &__content {
+        font-size: 1.3rem;
+        text-transform: capitalize;
+        align-self: center;
+        font-weight: 500;
+      }
+    }
+  }
+
+  &__categories {
+    margin: 2rem 0;
+
+    &__head {
+      text-transform: uppercase;
+      color: #bbbbbb;
+      font-size: 1rem;
+      font-weight: bolder;
+      padding: 0 1rem 1rem;
+      font-weight: 600;
+    }
+
+    &__add {
+      @extend .card;
+      transition: 0.2s;
+      margin-top: 0.5em;
+
+      &:hover {
+        color: #04cceb;
+      }
+
+      &__icon {
+        @extend .mat-icon;
+      }
+
+      &__content {
+        align-self: center;
+        font-weight: 400;
+        font-size: 1.3rem;
+        text-transform: capitalize;
+      }
+    }
+
+    &__input {
+      padding: 1rem;
+      input {
+        background-color: #002930;
+        color: #bbbbbb;
+        box-shadow: none;
+        border: 1px solid #00424c;
+        padding: 0.8rem 1rem;
+        width: 100%;
+      }
+    }
+
+    &__category {
+      @extend .card;
+
+      &__close {
+        position: absolute;
+        top: 18%;
+        right: 2rem;
+        font-size: 1.4rem;
+        display: none;
+        cursor: pointer;
+        z-index: 1;
+      }
+
+      &:hover {
+        background-color: #01323a;
+        .leftbar__categories__category__close {
+          display: block;
+        }
+      }
+
+      &--active {
+        background-color: #002930;
+        &:hover {
+          background-color: #002930;
+        }
+        .leftbar__actions__category__content {
+          font-weight: bold;
+        }
+        .leftbar__actions__category__icon {
+          color: #0098af;
+        }
+      }
+
+      &__icon {
+        @extend .mat-icon;
+        font-weight: lighter;
+      }
+
+      &__content {
+        align-self: center;
+        font-weight: 400;
+        font-size: 1.3rem;
+      }
+    }
+  }
+}

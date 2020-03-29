@@ -1,0 +1,99 @@
+header {
+  font-size: 1.4rem;
+  background-color: #fff;
+  position: relative;
+  padding: 2rem;
+
+  display: flex;
+  align-items: center;
+
+  &::after {
+    content: '';
+    box-shadow: inset 0px 4px 8px -3px rgba(24, 24, 24, 0.1);
+    bottom: 0;
+    left: 0;
+    opacity: 1;
+    pointer-events: none;
+    position: absolute;
+    right: 0px;
+    width: 100%;
+    z-index: 2050;
+    height: 0.5rem;
+  }
+}
+
+nav {
+  display: flex;
+  flex-basis: 100%;
+  justify-content: space-between;
+
+  .left {
+    flex-shrink: 0;
+    display: flex;
+
+    .menu {
+      cursor: pointer;
+      align-self: center;
+      margin: 0 2.5rem 0 0.5rem;
+
+      i {
+        color: #7d7c7c;
+        font-size: 3rem;
+      }
+    }
+
+    .logo {
+      height: 3.4rem;
+    }
+  }
+
+  .center {
+    flex: 2 0 auto;
+    display: flex;
+    justify-content: center;
+
+    input {
+      width: 58%;
+      border-radius: 0.5rem;
+      transition: all 0.2s;
+      border: 0.5px solid rgb(194, 194, 194);
+      padding: 1rem 1.2rem 0.95rem 1.4rem;
+      color: #555;
+      font-size: 1.4rem;
+      transform: scale(0.95);
+
+      &:focus {
+        width: 60%;
+        box-shadow: 0px 0px 10px rgba($color: #000000, $alpha: 0.2);
+        transform: scale(1);
+      }
+      &::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        color: #111;
+      }
+      &::-moz-placeholder {
+        /* Firefox 19+ */
+        color: #111;
+      }
+      &:-ms-input-placeholder {
+        /* IE 10+ */
+        color: #111;
+      }
+      &:-moz-placeholder {
+        /* Firefox 18- */
+        color: #111;
+      }
+    }
+  }
+
+  .right {
+    cursor: pointer;
+    align-self: center;
+    margin: 0 0.5rem 0 0;
+
+    i {
+      color: #7d7c7c;
+      font-size: 3rem;
+    }
+  }
+}

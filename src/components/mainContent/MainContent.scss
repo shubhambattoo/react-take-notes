@@ -1,0 +1,92 @@
+.note-container {
+  flex: 1 1 85%;
+  display: flex;
+
+  &__add-note {
+    display: grid;
+    grid-template-columns: 4rem auto;
+    font-size: 1.6rem;
+    color: rgb(0, 0, 0);
+    padding: 1rem 1rem 1.5rem;
+    cursor: pointer;
+    user-select: none;
+
+    &__icon {
+      display: flex;
+      place-items: center;
+    }
+
+    &__content {
+      align-self: center;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+  }
+
+  &__notes {
+    flex: 1 0 25%;
+    background-color: #eeeeee;
+    overflow-y: auto;
+
+    &__note {
+      padding: 1.5rem;
+      font-size: 1.4rem;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      color: #222;
+      cursor: pointer;
+      position: relative;
+
+      &:nth-last-child(1) {
+        border-bottom: 1px solid #d4d4d4;
+      }
+
+      &:hover {
+        background-color: #d4d4d4;
+        .note-container__notes__note__option {
+          display: block;
+        }
+      }
+
+      &--active {
+        &:hover {
+          background-color: #5183f5;
+        }
+        background-color: #5183f5;
+        font-weight: 500;
+        color: #fff;
+      }
+
+      &__option {
+        display: none;
+        position: absolute;
+        right: 2rem;
+        color: #111;
+        top: 30%;
+        z-index: 1;
+        // cursor: pointer;
+      }
+    }
+  }
+
+  &__selected-note {
+    flex: 1 1 75%;
+    background-color: #f5f5f5;
+    overflow-y: auto;
+
+    .editor {
+      padding: 2rem;
+      font-size: 1.5rem;
+    }
+  }
+
+  &__no-notes {
+    flex: 1 1 75%;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+  }
+}
