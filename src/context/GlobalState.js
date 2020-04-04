@@ -9,12 +9,14 @@ const initialState = {
       id: 'fav',
       value: 'favorites',
       icon: 'favorite_border',
-      isActive: false
+      isActive: false,
     },
-    { id: 'del', value: 'trash', icon: 'delete', isActive: false }
+    { id: 'del', value: 'trash', icon: 'delete', isActive: false },
   ],
   categories: [],
-  selectedCategory: null
+  selectedCategory: null,
+  notes: [],
+  selectedNote: null,
 };
 
 // Create Context
@@ -28,12 +30,26 @@ export const GlobalProvider = ({ children }) => {
     dispatch({ type: 'ADD_CATEGORY', payload: category });
   }
 
+  function selectAction(id) {
+    dispatch({ type: 'SELECT_ACTION', payload: id });
+  }
+
+  function addNote(note) {
+    dispatch({ type: 'ADD_NOTE', payload: note });
+  }
+
   return (
     <GlobalContext.Provider
       value={{
         actions: state.actions,
         categories: state.categories,
-        addCategory
+        selectedAction: state.selectedAction,
+        selectedCategory: state.selectedCategory,
+        notes: state.notes,
+        selectedNote: state.selectedNote,
+        addCategory,
+        selectAction,
+        addNote
       }}
     >
       {children}

@@ -3,24 +3,25 @@ import './LeftMenu.scss';
 import { GlobalContext } from '../../context/GlobalState';
 
 export const LeftMenu = () => {
-  const { actions, categories, addCategory } = useContext(GlobalContext);
+  const { actions, categories, addCategory, selectAction } = useContext(
+    GlobalContext
+  );
   const [isInputShown, setIsInputShown] = useState(false);
   const [categoryInput, setCategoryInput] = useState('');
 
   function handleAddCategory(e) {
-    const category = {
-      id: categories.length + 1,
-      name: categoryInput,
-      dateCreated: Date.now(),
-      isActive: false
-    };
     if (e.keyCode === 13) {
+      const category = {
+        id: categories.length + 1,
+        name: categoryInput,
+        dateCreated: Date.now(),
+        isActive: false,
+      };
       addCategory(category);
       setCategoryInput('');
       setIsInputShown(false);
     }
   }
-
   return (
     <aside className="leftbar">
       <div className="leftbar__actions">
@@ -30,8 +31,8 @@ export const LeftMenu = () => {
               'leftbar__actions__item ' +
               (el.isActive && 'leftbar__actions__item--active')
             }
-            key={i}
-            onClick={() => this.selectAction(el.id)}
+            key={el.id}
+            onClick={() => selectAction(el.id)}
           >
             <div className="leftbar__actions__item__icon">
               <i className="material-icons">{el.icon}</i>
@@ -43,13 +44,12 @@ export const LeftMenu = () => {
       <div className="leftbar__categories">
         <div className="leftbar__categories__head">Categories</div>
 
-        {categories.map(category => (
+        {categories.map((category) => (
           <div
             className={
               'leftbar__categories__category ' +
               (category.isActive && 'leftbar__categories__category--active')
             }
-            onClick={e => this.categoryActive(e, category.id)}
             key={category.id}
           >
             <div className="leftbar__categories__category__icon">
@@ -60,7 +60,7 @@ export const LeftMenu = () => {
             </div>
             <div
               className="leftbar__categories__category__close"
-              onClick={e => this.removeCategory(e, category.id)}
+              onClick={(e) => this.removeCategory(e, category.id)}
             >
               &times;
             </div>
@@ -77,7 +77,7 @@ export const LeftMenu = () => {
               autoFocus={isInputShown}
               value={categoryInput}
               onKeyUp={handleAddCategory}
-              onChange={e => setCategoryInput(e.target.value)}
+              onChange={(e) => setCategoryInput(e.target.value)}
             />
           </div>
         ) : (
