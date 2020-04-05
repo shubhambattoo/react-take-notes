@@ -4,11 +4,11 @@ import { GlobalContext } from '../../context/GlobalState';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import 'codemirror/mode/markdown/markdown';
 import 'codemirror/addon/selection/active-line';
+import { NoteList } from '../noteList/NoteList';
+import { AddNote } from '../addNote/AddNote';
 
 export const MainContent = () => {
-  const { notes, addNote, selectedNote, updateNote } = useContext(
-    GlobalContext
-  );
+  const { selectedNote, updateNote } = useContext(GlobalContext);
   const [code, setCode] = useState('');
 
   useEffect(() => {
@@ -16,21 +16,6 @@ export const MainContent = () => {
       setCode(selectedNote.content);
     }
   }, [selectedNote]);
-
-  function handleAddNote() {
-    const note = {
-      id: notes.length + 1,
-      created: Date.now(),
-      updated: Date.now(),
-      content: '',
-      heading: 'New Note',
-      isActive: true,
-      isNew: true,
-      isFav: false
-    };
-    addNote(note);
-    setCode('');
-  }
 
   function onEditorChange(editor, data, value) {
     const heading = editor.display.view[0].text.textContent;
@@ -46,34 +31,8 @@ export const MainContent = () => {
   return (
     <div className="note-container">
       <div className="note-container__notes">
-        <div className="note-container__add-note">
-          <div className="note-container__add-note__icon">
-            <i className="material-icons">add</i>
-          </div>
-          <div
-            className="note-container__add-note__content"
-            onClick={handleAddNote}
-          >
-            Add Note
-          </div>
-        </div>
-
-        {notes.map((note) => (
-          <div
-            className={
-              'note-container__notes__note ' +
-              (note.isActive && 'note-container__notes__note--active')
-            }
-            key={note.id}
-          >
-            <div className="note-container__notes__note__content">
-              {note.heading ? note.heading : 'New Note'}
-            </div>
-            <div className="note-container__notes__note__option">
-              <i className="material-icons">more_horiz</i>
-            </div>
-          </div>
-        ))}
+        <AddNote />
+        <NoteList />
       </div>
 
       {!selectedNote ? (
@@ -85,7 +44,7 @@ export const MainContent = () => {
             value={code}
             options={{
               mode: 'markdown',
-              theme: 'base16-light',
+              theme: 'base16-light'
             }}
             editorDidMount={(editor) => {
               setTimeout(() => {

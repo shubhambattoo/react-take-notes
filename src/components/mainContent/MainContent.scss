@@ -30,12 +30,14 @@
     flex: 1 0 25%;
     background-color: #eeeeee;
     overflow-y: auto;
+    overflow-x: hidden;
 
     &__note {
-      padding: 1.5rem;
+      padding: 1.3rem;
       font-size: 1.4rem;
       font-weight: 400;
       display: flex;
+      justify-content: space-between;
       align-items: center;
       color: #222;
       cursor: pointer;
@@ -48,7 +50,7 @@
       &:hover {
         background-color: #d4d4d4;
         .note-container__notes__note__option {
-          display: block;
+          opacity: 1;
         }
       }
 
@@ -70,13 +72,10 @@
       }
 
       &__option {
-        display: none;
-        position: absolute;
-        right: 2rem;
+        opacity: 0;
         color: #111;
-        top: 30%;
         z-index: 1;
-        // cursor: pointer;
+        cursor: pointer;
       }
     }
   }
