@@ -21,9 +21,17 @@ export default (state, action) => {
     case 'SELECT_NOTE':
       return {
         ...state,
-        notes : changeActive(state.notes, action.payload),
-        selectedNote : selectNote(state.notes, action.payload),
-      }
+        notes: changeActive(state.notes, action.payload),
+        selectedNote: selectNote(state.notes, action.payload),
+      };
+    case 'UPDATE_NOTE':
+      const { id } = action.payload;
+      const notes = updateNote(state.notes, action.payload);
+      return {
+        ...state,
+        notes,
+        selectedNote: selectNote(notes, id)
+      };
     default:
       return state;
   }
@@ -42,4 +50,10 @@ function selectActive(arr, id) {
 
 function selectNote(arr, id) {
   return arr.find((el) => el.id === id);
+}
+
+function updateNote(notes, note) {
+  let nts = notes.filter((n) => n.id !== note.id);
+  nts = [...nts, note].sort((a, b) => a.id - b.id);
+  return nts;
 }
