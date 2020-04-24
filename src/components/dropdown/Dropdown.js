@@ -1,9 +1,9 @@
 import React from 'react';
 import './Dropdown.scss';
 
-export const Dropdown = () => {
+export const Dropdown = ({moreStyles}) => {
   return (
-    <div className="dropdown-menu">
+    <div style={moreStyles} className="dropdown-menu">
       <div className="dropdown-menu__item">
         <div className="dropdown-menu__item__icon">
           <i className="material-icons">delete</i>

@@ -1,7 +1,7 @@
 .dropdown-menu {
-  position: absolute;
-  top: 0;
-  right: -20px;
+  // position: absolute;
+  // top: 0;
+  // right: -40px;
   z-index: 100;
   background-color: #fff;
 
@@ -10,18 +10,19 @@
     grid-template-columns: 30px auto;
     align-items: center;
     color: #333;
-    padding: 5px;
+    padding: 4px 20px;
 
     &:not(:last-child) {
       border-bottom: 1px solid #383838;
     }
 
     &__icon {
-      font-size: 20px;
+      font-size: 16px;
+      align-self: center;
     }
 
     &__text {
-      font-size: 14px;
+      font-size: 12px;
     }
   }
 }
