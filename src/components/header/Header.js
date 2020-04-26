@@ -23,10 +23,11 @@ export const Header = () => {
             name="search"
             placeholder="Search for notes"
             id="search"
+            style={{ display: 'none' }}
           />
         </div>
         <div className="right">
-          <i className="material-icons">settings_applications</i>
+          {false && <i className="material-icons">settings_applications</i>}
         </div>
       </nav>
     </header>
