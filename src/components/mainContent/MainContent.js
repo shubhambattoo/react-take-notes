@@ -6,10 +6,12 @@ import 'codemirror/mode/markdown/markdown';
 import 'codemirror/addon/selection/active-line';
 import { NoteList } from '../noteList/NoteList';
 import { AddNote } from '../addNote/AddNote';
+import ReactMarkdown from 'react-markdown';
 
 export const MainContent = () => {
   const { selectedNote, updateNote } = useContext(GlobalContext);
   const [code, setCode] = useState('');
+  const [isPreview, setIsPreview] = useState(false);
 
   useEffect(() => {
     if (selectedNote) {
@@ -29,6 +31,10 @@ export const MainContent = () => {
     updateNote(upNote);
   }
 
+  function togglePreview() {
+    setIsPreview(!isPreview);
+  }
+
   return (
     <div className="note-container">
       <div className="note-container__notes">
@@ -40,28 +46,35 @@ export const MainContent = () => {
         <div className="note-container__no-notes">No note added add now</div>
       ) : (
         <div className="note-container__selected-note">
-          <CodeMirror
-            className="editor"
-            value={code}
-            options={{
-              mode: 'markdown',
-              theme: 'base16-light'
-            }}
-            editorDidMount={(editor) => {
-              setTimeout(() => {
-                editor.focus();
-              }, 0);
-              editor.setCursor(0);
-            }}
-            onChange={(editor, data, value) => {
-              if (!value) {
-                editor.focus();
+          <button onClick={togglePreview}>
+            {isPreview ? 'Edit' : 'Preview'}
+          </button>
+          {!isPreview ? (
+            <CodeMirror
+              className="editor"
+              value={code}
+              options={{
+                mode: 'markdown',
+                theme: 'base16-light',
+              }}
+              editorDidMount={(editor) => {
+                setTimeout(() => {
+                  editor.focus();
+                }, 0);
+                editor.setCursor(0);
+              }}
+              onChange={(editor, data, value) => {
+                if (!value) {
+                  editor.focus();
+                }
+              }}
+              onBeforeChange={(editor, data, value) =>
+                onEditorChange(editor, data, value)
               }
-            }}
-            onBeforeChange={(editor, data, value) =>
-              onEditorChange(editor, data, value)
-            }
-          />
+            />
+          ) : (
+            <ReactMarkdown className={'previewer'} source={code} />
+          )}
         </div>
       )}
     </div>
