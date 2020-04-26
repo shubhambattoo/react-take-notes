@@ -5,6 +5,8 @@ export const UPDATE_NOTE = 'UPDATE_NOTE';
 export const FAV_NOTE = 'FAV_NOTE';
 export const SELECT_NOTE = 'SELECT_NOTE';
 export const DELETE_NOTE = 'DELETE_NOTE';
+export const UNFAV_NOTE = 'UNFAV_NOTE';
+export const PERMANENT_DELETE = 'PERMANENT_DELETE';
 
 export default (state, action) => {
   switch (action.type) {
@@ -18,6 +20,7 @@ export default (state, action) => {
         ...state,
         actions: changeActive(state.actions, action.payload),
         selectedAction: selectActive(state.actions, action.payload),
+        selectedNote: null
       };
     case ADD_NOTE:
       const newNotes = [...state.notes, action.payload];
@@ -41,15 +44,13 @@ export default (state, action) => {
         selectedNote: selectNote(notes, id),
       };
     case FAV_NOTE:
-      return {
-        ...state,
-        ...favNote(state, action.payload),
-      };
+      return { ...state, ...favNote(state, action.payload) };
     case DELETE_NOTE:
-      return {
-        ...state,
-        ...deleteNote(state, action.payload)
-      };
+      return { ...state, ...deleteNote(state, action.payload) };
+    case UNFAV_NOTE:
+      return { ...state, ...unFavNote(state, action.payload) };
+    case PERMANENT_DELETE:
+      return { ...state, ...permanentDelete(state.trash, action.payload) };
     default:
       return state;
   }
@@ -79,10 +80,25 @@ function updateNote(notes, note) {
 function favNote(state, id) {
   const { favNotes, notes } = state;
   const note = notes.find((el) => el.id === id);
-  const nts = notes.filter((n) => n.id !== note.id);
-  note.isFav = true;
+  const finalNotes = notes.map((n) => {
+    n.isFav = n.id === id;
+    return n;
+  });
   return {
-    notes: [...nts, note],
+    notes: finalNotes,
+    favNotes: [...favNotes, note],
+  };
+}
+
+function unFavNote(state, id) {
+  const { favNotes, notes } = state;
+  const note = notes.find((el) => el.id === id);
+  const finalNotes = notes.map((n) => {
+    n.isFav = n.id === id && false;
+    return n;
+  });
+  return {
+    notes: finalNotes,
     favNotes: [...favNotes, note],
   };
 }
@@ -91,8 +107,14 @@ function deleteNote(state, id) {
   const { trash, notes } = state;
   const note = notes.find((el) => el.id === id);
   const nts = notes.filter((n) => n.id !== id);
+  note.inTrash = true;
   return {
     notes: [...nts],
     trash: [...trash, note],
   };
+}
+
+function permanentDelete(deletedNotes, id) {
+  const trash = deletedNotes.filter((n) => n.id !== id);
+  return { trash };
 }

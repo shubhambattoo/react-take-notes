@@ -10,8 +10,8 @@ export const Note = ({ note }) => {
     setStylesD({
       left: e.clientX,
       top: e.clientY,
-      position: "absolute"
-    })
+      position: 'absolute',
+    });
     setIsDropDown(!isDropDown);
   }
 
@@ -30,7 +30,15 @@ export const Note = ({ note }) => {
       >
         <i className="material-icons">more_horiz</i>
       </div>
-      {isDropDown && <Dropdown moreStyles={stylesD} id={note.id} close={handleDropdownClose} />}
+      {isDropDown && (
+        <Dropdown
+          moreStyles={stylesD}
+          isFav={note.isFav}
+          inTrash={note.inTrash}
+          id={note.id}
+          close={handleDropdownClose}
+        />
+      )}
     </>
   );
 };
@@ -45,5 +53,6 @@ Note.propTypes = {
     isActive: PropTypes.bool,
     isNew: PropTypes.bool,
     isFav: PropTypes.bool,
-  })
-}
+    inTrash: PropTypes.bool,
+  }),
+};

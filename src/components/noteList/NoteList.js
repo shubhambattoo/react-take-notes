@@ -3,7 +3,13 @@ import { GlobalContext } from '../../context/GlobalState';
 import { Note } from '../note/Note';
 
 export const NoteList = () => {
-  const { notes, selectedAction, favNotes, trash } = useContext(GlobalContext);
+  const { notes, selectedAction, favNotes, trash, selectNote } = useContext(
+    GlobalContext
+  );
+
+  const handleSelectNote = id => () => {
+    selectNote(id);
+  }
 
   if (selectedAction === 'all') {
     return notes.map((note) => (
@@ -13,6 +19,7 @@ export const NoteList = () => {
           (note.isActive && 'note-container__notes__note--active')
         }
         key={note.id}
+        onClick={handleSelectNote(note.id)}
       >
         <Note note={note} />
       </div>
@@ -25,6 +32,7 @@ export const NoteList = () => {
           (note.isActive && 'note-container__notes__note--active')
         }
         key={note.id}
+        onClick={handleSelectNote(note.id)}
       >
         <Note note={note} />
       </div>
@@ -37,6 +45,7 @@ export const NoteList = () => {
           (note.isActive && 'note-container__notes__note--active')
         }
         key={note.id}
+        onClick={handleSelectNote(note.id)}
       >
         <Note note={note} />
       </div>

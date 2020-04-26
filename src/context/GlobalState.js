@@ -6,6 +6,9 @@ import AppReducer, {
   UPDATE_NOTE,
   FAV_NOTE,
   DELETE_NOTE,
+  PERMANENT_DELETE,
+  UNFAV_NOTE,
+  SELECT_NOTE,
 } from './AppReducer';
 
 const initialState = {
@@ -59,6 +62,18 @@ export const GlobalProvider = ({ children }) => {
     dispatch({ type: DELETE_NOTE, payload: id });
   }
 
+  function permanentDelete(id) {
+    dispatch({ type: PERMANENT_DELETE, payload: id });
+  }
+
+  function unFavNote(id) {
+    dispatch({ type: UNFAV_NOTE, payload: id });
+  }
+
+  function selectNote(id) {
+    dispatch({type: SELECT_NOTE, payload: id})
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -75,7 +90,10 @@ export const GlobalProvider = ({ children }) => {
         addNote,
         updateNote,
         favNote,
-        deleteNote
+        deleteNote,
+        unFavNote,
+        permanentDelete,
+        selectNote
       }}
     >
       {children}
