@@ -18,7 +18,8 @@ export const MainContent = () => {
   }, [selectedNote]);
 
   function onEditorChange(editor, data, value) {
-    const heading = editor.display.view[0].text.textContent;
+    const text = editor.display.view[0].text.textContent;
+    const heading = text.length !== 1 ? text : 'New Note';
     setCode(value);
     const upNote = JSON.parse(JSON.stringify(selectedNote));
     upNote.updated = Date.now();

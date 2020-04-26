@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Dropdown } from '../dropdown/Dropdown';
+import PropTypes from 'prop-types';
 
 export const Note = ({ note }) => {
   const [isDropDown, setIsDropDown] = useState(false);
@@ -11,8 +12,13 @@ export const Note = ({ note }) => {
       top: e.clientY,
       position: "absolute"
     })
-    setIsDropDown(true);
+    setIsDropDown(!isDropDown);
   }
+
+  function handleDropdownClose() {
+    setIsDropDown(false);
+  }
+
   return (
     <>
       <div className="note-container__notes__note__content">
@@ -24,7 +30,20 @@ export const Note = ({ note }) => {
       >
         <i className="material-icons">more_horiz</i>
       </div>
-      {isDropDown && <Dropdown moreStyles={stylesD} />}
+      {isDropDown && <Dropdown moreStyles={stylesD} id={note.id} close={handleDropdownClose} />}
     </>
   );
 };
+
+Note.propTypes = {
+  note: PropTypes.shape({
+    id: PropTypes.number,
+    created: PropTypes.number,
+    updated: PropTypes.number,
+    content: PropTypes.string,
+    heading: PropTypes.string,
+    isActive: PropTypes.bool,
+    isNew: PropTypes.bool,
+    isFav: PropTypes.bool,
+  })
+}

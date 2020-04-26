@@ -1,9 +1,7 @@
 .dropdown-menu {
-  // position: absolute;
-  // top: 0;
-  // right: -40px;
   z-index: 100;
-  background-color: #fff;
+  background-color: #f1f2f3;
+  padding: 5px 8px;
 
   &__item {
     display: grid;
@@ -13,12 +11,11 @@
     padding: 4px 20px;
 
     &:not(:last-child) {
-      border-bottom: 1px solid #383838;
+      border-bottom: 1px solid #38383834;
     }
 
     &__icon {
       font-size: 16px;
-      align-self: center;
     }
 
     &__text {

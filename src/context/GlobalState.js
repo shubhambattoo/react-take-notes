@@ -1,5 +1,12 @@
 import React, { createContext, useReducer } from 'react';
-import AppReducer from './AppReducer';
+import AppReducer, {
+  ADD_CATEGORY,
+  SELECT_ACTION,
+  ADD_NOTE,
+  UPDATE_NOTE,
+  FAV_NOTE,
+  DELETE_NOTE,
+} from './AppReducer';
 
 const initialState = {
   selectedAction: 'all',
@@ -16,6 +23,8 @@ const initialState = {
   categories: [],
   selectedCategory: null,
   notes: [],
+  favNotes: [],
+  trash: [],
   selectedNote: null,
 };
 
@@ -27,19 +36,27 @@ export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
   function addCategory(category) {
-    dispatch({ type: 'ADD_CATEGORY', payload: category });
+    dispatch({ type: ADD_CATEGORY, payload: category });
   }
 
   function selectAction(id) {
-    dispatch({ type: 'SELECT_ACTION', payload: id });
+    dispatch({ type: SELECT_ACTION, payload: id });
   }
 
   function addNote(note) {
-    dispatch({ type: 'ADD_NOTE', payload: note });
+    dispatch({ type: ADD_NOTE, payload: note });
   }
 
   function updateNote(note) {
-    dispatch({ type: 'UPDATE_NOTE', payload: note });
+    dispatch({ type: UPDATE_NOTE, payload: note });
+  }
+
+  function favNote(id) {
+    dispatch({ type: FAV_NOTE, payload: id });
+  }
+
+  function deleteNote(id) {
+    dispatch({ type: DELETE_NOTE, payload: id });
   }
 
   return (
@@ -51,10 +68,14 @@ export const GlobalProvider = ({ children }) => {
         selectedCategory: state.selectedCategory,
         notes: state.notes,
         selectedNote: state.selectedNote,
+        favNotes: state.favNotes,
+        trash: state.trash,
         addCategory,
         selectAction,
         addNote,
-        updateNote
+        updateNote,
+        favNote,
+        deleteNote
       }}
     >
       {children}
