@@ -2,24 +2,10 @@ header {
   font-size: 1.4rem;
   background-color: #fff;
   position: relative;
-  padding: 2rem;
-
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
   display: flex;
   align-items: center;
-
-  &::after {
-    content: '';
-    box-shadow: inset 0px 4px 8px -3px rgba(24, 24, 24, 0.1);
-    bottom: 0;
-    left: 0;
-    opacity: 1;
-    pointer-events: none;
-    position: absolute;
-    right: 0px;
-    width: 100%;
-    z-index: 2050;
-    height: 0.5rem;
-  }
 }
 
 nav {
@@ -43,7 +29,7 @@ nav {
     }
 
     .logo {
-      height: 3.4rem;
+      height: 3rem;
     }
   }
 

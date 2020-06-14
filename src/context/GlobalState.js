@@ -71,7 +71,7 @@ export const GlobalProvider = ({ children }) => {
   }
 
   function selectNote(id) {
-    dispatch({type: SELECT_NOTE, payload: id})
+    dispatch({ type: SELECT_NOTE, payload: id });
   }
 
   return (
@@ -93,7 +93,7 @@ export const GlobalProvider = ({ children }) => {
         deleteNote,
         unFavNote,
         permanentDelete,
-        selectNote
+        selectNote,
       }}
     >
       {children}
