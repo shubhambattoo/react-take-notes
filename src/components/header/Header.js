@@ -6,14 +6,11 @@ export const Header = () => {
     <header>
       <nav>
         <div className="left">
-          <div className="menu">
-            <i className="material-icons">menu</i>
-          </div>
-          <a href="/" title="Note Taken">
+          <a href="/" title="Take Notes">
             <img
-              src="https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo3.png"
+              src={require('./../../assets/img/logo.png')}
               className="logo"
-              alt="Note Taken"
+              alt="Take Notes"
             />
           </a>
         </div>
@@ -26,9 +23,14 @@ export const Header = () => {
             style={{ display: 'none' }}
           />
         </div>
-        <div className="right">
-          {false && <i className="material-icons">settings_applications</i>}
-        </div>
+        {false && (
+          <div className="right">
+            <div className="sync">
+              <i className="material-icons">sync</i>
+              Sync Now
+            </div>
+          </div>
+        )}
       </nav>
     </header>
   );
