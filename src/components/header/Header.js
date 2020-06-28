@@ -24,7 +24,10 @@ export const Header = () => {
           />
         </div>
         <div className="right">
-          {false && <i className="material-icons">settings_applications</i>}
+          <div className="sync">
+            <i className="material-icons">sync</i>
+            Sync Now
+          </div>
         </div>
       </nav>
     </header>
