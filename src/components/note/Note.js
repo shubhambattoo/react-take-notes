@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Dropdown } from '../dropdown/Dropdown';
 import PropTypes from 'prop-types';
+import removeMd from 'remove-markdown';
 
 export const Note = ({ note }) => {
   const [isDropDown, setIsDropDown] = useState(false);
@@ -22,7 +23,7 @@ export const Note = ({ note }) => {
   return (
     <>
       <div className="note-container__notes__note__content">
-        {note.heading ? note.heading : 'New Note'}
+        {note.heading ? removeMd(note.heading) : 'New Note'}
       </div>
       <div
         className="note-container__notes__note__option"

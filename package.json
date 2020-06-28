@@ -11,7 +11,8 @@
     "react-codemirror2": "^7.1.0",
     "react-dom": "^16.13.1",
     "react-markdown": "^4.3.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "remove-markdown": "^0.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

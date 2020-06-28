@@ -23,12 +23,14 @@ export const Header = () => {
             style={{ display: 'none' }}
           />
         </div>
-        <div className="right">
-          <div className="sync">
-            <i className="material-icons">sync</i>
-            Sync Now
+        {false && (
+          <div className="right">
+            <div className="sync">
+              <i className="material-icons">sync</i>
+              Sync Now
+            </div>
           </div>
-        </div>
+        )}
       </nav>
     </header>
   );
