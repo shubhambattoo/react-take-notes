@@ -1,8 +1,10 @@
-# React Take Notes
+# Take Notes
 
 React note taking application made using react-hooks and context-api. Inspired from [take note](https://github.com/taniarascia/takenote) by [Tania Rascia](https://twitter.com/taniarascia).
 
 ### [Live preview](https://take-notes.netlify.app/)
+
+![](./github/screen.png)
 
 ## Getting Started
 
