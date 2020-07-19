@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Header.scss';
 import { useLocation, Link } from 'react-router-dom';
 
@@ -9,17 +9,22 @@ export const Header = () => {
     <header>
       <nav>
         <div className="left">
-          <a href="/" title="Take Notes">
+          <Link to="/" title="Take Notes">
             <img
               src={require('./../../assets/img/logo.png')}
               className="logo"
               alt="Take Notes"
             />
-          </a>
+          </Link>
         </div>
         {match.pathname === '/' ? (
           <div className="right buttons">
-            <a className="btn" href="https://github.com/shubhambattoo">
+            <a
+              className="btn"
+              href="https://github.com/shubhambattoo/react-take-notes"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               GitHub
             </a>
             <button>Use App</button>
@@ -32,9 +37,10 @@ export const Header = () => {
                 name="search"
                 placeholder="Search for notes"
                 id="search"
+                style={{ display: 'none' }}
               />
             </div>
-            <div className="right">
+            <div className="right" style={{ display: 'none' }}>
               <div className="sync">
                 <i className="material-icons">sync</i>
                 Sync Now
