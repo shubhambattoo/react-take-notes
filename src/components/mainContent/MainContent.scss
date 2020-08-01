@@ -40,11 +40,7 @@
       align-items: center;
       color: #222;
       cursor: pointer;
-      // position: relative;
-
-      &:nth-last-child(1) {
-        border-bottom: 1px solid #d4d4d4;
-      }
+      border-bottom: 1px solid #d4d4d4;
 
       &:hover {
         background-color: #d4d4d4;

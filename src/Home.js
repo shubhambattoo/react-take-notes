@@ -1,5 +1,6 @@
 import React from 'react';
 import { Header } from './components/header/Header';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
@@ -17,7 +18,7 @@ const Home = () => {
                 </p>
               </div>
               <div className="actions">
-                <button>Let's Start</button>
+                <Link to='/app'>Let's Start</Link>
                 <p>TakeNotes the simple way for free. Forever.</p>
               </div>
             </div>

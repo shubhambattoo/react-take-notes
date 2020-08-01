@@ -7,6 +7,7 @@ export const SELECT_NOTE = 'SELECT_NOTE';
 export const DELETE_NOTE = 'DELETE_NOTE';
 export const UNFAV_NOTE = 'UNFAV_NOTE';
 export const PERMANENT_DELETE = 'PERMANENT_DELETE';
+export const SET_APPSTATE = 'SET_APPSTATE';
 
 export default (state, action) => {
   switch (action.type) {
@@ -20,7 +21,7 @@ export default (state, action) => {
         ...state,
         actions: changeActive(state.actions, action.payload),
         selectedAction: selectActive(state.actions, action.payload),
-        selectedNote: null
+        selectedNote: null,
       };
     case ADD_NOTE:
       const newNotes = [...state.notes, action.payload];
@@ -51,10 +52,17 @@ export default (state, action) => {
       return { ...state, ...unFavNote(state, action.payload) };
     case PERMANENT_DELETE:
       return { ...state, ...permanentDelete(state.trash, action.payload) };
+    case SET_APPSTATE:
+      return { ...state, ...setCompleteState(action.payload) };
     default:
       return state;
   }
 };
+
+function setCompleteState(state) {
+  const newNotes = state.notes.map((n) => ({ ...n, isActive: false }));
+  return { ...state, notes: newNotes, selectedNote: null };
+}
 
 function changeActive(arr, id) {
   return arr.map((el) => {
@@ -108,6 +116,7 @@ function deleteNote(state, id) {
   const note = notes.find((el) => el.id === id);
   const nts = notes.filter((n) => n.id !== id);
   note.inTrash = true;
+  note.isActive = false;
   return {
     notes: [...nts],
     trash: [...trash, note],

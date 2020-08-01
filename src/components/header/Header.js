@@ -27,7 +27,7 @@ export const Header = () => {
             >
               GitHub
             </a>
-            <button>Use App</button>
+            <Link to='/app' className='btn'>Use App</Link>
           </div>
         ) : (
           <>
