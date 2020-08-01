@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer, useEffect } from 'react';
 import AppReducer, {
   ADD_CATEGORY,
   SELECT_ACTION,
@@ -9,6 +9,7 @@ import AppReducer, {
   PERMANENT_DELETE,
   UNFAV_NOTE,
   SELECT_NOTE,
+  SET_APPSTATE,
 } from './AppReducer';
 
 const initialState = {
@@ -37,6 +38,18 @@ export const GlobalContext = createContext(initialState);
 // Provider Component
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
+
+  useEffect(() => {
+    const item = localStorage.getItem('appState');
+    const appState = JSON.parse(item);
+    if (item) {
+      dispatch({ type: SET_APPSTATE, payload: appState });
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('appState', JSON.stringify(state));
+  }, [state]);
 
   function addCategory(category) {
     dispatch({ type: ADD_CATEGORY, payload: category });

@@ -29,7 +29,7 @@ nav {
     }
 
     .logo {
-      height: 3rem;
+      height: 3.5rem;
     }
   }
 
@@ -83,13 +83,39 @@ nav {
       font-size: 1.4rem;
       font-weight: 500;
       color: #464646;
-      
+
       i {
         margin-right: 0.5rem;
         font-size: 2.4rem;
 
         &.loading {
           animation: loader linear 1s infinite;
+        }
+      }
+    }
+
+    &.buttons {
+      display: flex;
+
+      a.btn,
+      a.btn:link,
+      button {
+        margin: 0 8px;
+        text-transform: uppercase;
+        border: 1px solid #0098af;
+        padding: 5px 22px;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #0098af;
+        box-shadow: none;
+        color: #fff;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        text-decoration: none;
+
+        &:hover,
+        &:active {
+          background-color:  #148091;
         }
       }
     }
