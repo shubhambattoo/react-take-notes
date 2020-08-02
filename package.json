@@ -18,6 +18,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:deploy": "react-scripts build && cd build && echo '/*    /index.html   200' >> _redirects",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
