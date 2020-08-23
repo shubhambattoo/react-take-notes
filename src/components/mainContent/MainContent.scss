@@ -114,13 +114,14 @@
 
 .CodeMirror {
   height: auto;
-  width: 100%;
+  max-width: 100%;
   white-space: pre;
+  border: 1px solid #000;
 }
 
 .previewer {
   position: relative;
-  max-height: calc(100vh);
+  max-height: calc(100vh - 75px);
   overflow-y: auto;
 
   background: #f5f5f5;
