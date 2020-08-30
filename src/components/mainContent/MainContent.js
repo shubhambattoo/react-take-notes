@@ -35,6 +35,15 @@ export const MainContent = () => {
     setIsPreview(!isPreview);
   }
 
+  const codemirrorOptions = {
+    mode: 'gfm',
+    theme: 'base16-light',
+    keyMap: 'default',
+    dragDrop: false,
+    lineNumbers: false,
+    lineWrapping: true,
+  };
+
   return (
     <div className="note-container">
       <div className="note-container__notes">
@@ -53,10 +62,7 @@ export const MainContent = () => {
             <CodeMirror
               className="editor"
               value={code}
-              options={{
-                mode: 'markdown',
-                theme: 'base16-light',
-              }}
+              options={codemirrorOptions}
               editorDidMount={(editor) => {
                 setTimeout(() => {
                   editor.focus();

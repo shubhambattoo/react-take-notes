@@ -1,0 +1,167 @@
+.previewer {
+  position: relative;
+  max-height: calc(100vh - 75px);
+  overflow-y: auto;
+
+  background: #f5f5f5;
+  color: #404040;
+  padding: 2rem;
+
+  a {
+    color: #0098af;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  p,
+  ol,
+  ul,
+  dl,
+  table {
+    font-size: 1.6rem;
+    line-height: 1.5;
+    margin: 0 0 1.5rem 0;
+  }
+
+  ul li ul {
+    margin-bottom: 0;
+  }
+
+  ol li ol {
+    margin-bottom: 0;
+  }
+
+  ul li [type='checkbox'] {
+    margin-right: 1rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    margin: 0 0 1.5rem 0;
+    font-weight: 700;
+    line-height: 1.2;
+
+    &:not(:first-child) {
+      margin: 1.5rem 0;
+    }
+  }
+
+  // Increased margin on additional headings
+  h1:not(:first-child),
+  h2:not(:first-child),
+  h3:not(:first-child) {
+    margin-top: 2rem;
+  }
+
+  // Heading individual styles
+  h1 {
+    font-size: 2.9rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  h3 {
+    font-size: 2.2rem;
+  }
+
+  h4 {
+    font-size: 1.9rem;
+  }
+
+  h5 {
+    font-size: 1.6rem;
+  }
+
+  // Blockquote
+  blockquote {
+    margin: 0 0 1.5rem 0;
+    border-left: 4px solid #9e9e9e;
+    padding: 0.5rem 1.5rem;
+
+    p {
+      font-size: 1.76rem;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+
+    cite {
+      display: block;
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      text-align: right;
+    }
+  }
+
+  // Code block styling
+  pre {
+    border: 0;
+    border-radius: 0;
+    background: lightgray;
+    padding: 1.6rem;
+    tab-size: 2;
+    color: #404040;
+    margin: 0 0 1.5rem 0;
+    white-space: pre-wrap;
+    word-spacing: normal;
+    word-break: normal;
+    font-size: 1.4rem;
+
+    code {
+      padding: 0;
+      background: transparent;
+      line-height: 1.2;
+    }
+  }
+
+  code {
+    padding: 2px 4px;
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.08);
+  }
+
+  hr {
+    height: 0;
+    border: 0;
+    border-top: 2px solid lighten(#f1f1f1, 10%);
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 32rem;
+    object-fit: cover;
+  }
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    max-width: 100%;
+  }
+
+  thead th {
+    border-bottom: 2px solid lightgray;
+  }
+
+  tfoot th {
+    border-top: 2px solid lightgray;
+  }
+
+  td {
+    border-bottom: 1px solid lightgray;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 0.5rem;
+  }
+}
