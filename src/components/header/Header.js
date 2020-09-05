@@ -16,13 +16,15 @@ export const Header = () => {
     <header>
       <nav>
         <div className="left">
-          <div
-            className="menu"
-            aria-label="minimize menu"
-            onClick={handleToggle}
-          >
-            <i className="material-icons">menu</i>
-          </div>
+          {match.pathname !== '/' && (
+            <div
+              className="menu"
+              aria-label="minimize menu"
+              onClick={handleToggle}
+            >
+              <i className="material-icons">menu</i>
+            </div>
+          )}
           <Link to="/" title="Take Notes">
             <img
               src={require('./../../assets/img/logo.png')}
