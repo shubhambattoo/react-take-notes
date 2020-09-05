@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useContext, useCallback } from 'react';
 import './Header.scss';
 import { useLocation, Link } from 'react-router-dom';
+import { GlobalContext } from '../../context/GlobalState';
 
 export const Header = () => {
   const match = useLocation();
+
+  const { toggleLeftMenu } = useContext(GlobalContext);
+
+  const handleToggle = useCallback(() => {
+    toggleLeftMenu();
+  }, [toggleLeftMenu]);
 
   return (
     <header>
       <nav>
         <div className="left">
+          <div
+            className="menu"
+            aria-label="minimize menu"
+            onClick={handleToggle}
+          >
+            <i className="material-icons">menu</i>
+          </div>
           <Link to="/" title="Take Notes">
             <img
               src={require('./../../assets/img/logo.png')}
@@ -27,7 +41,9 @@ export const Header = () => {
             >
               GitHub
             </a>
-            <Link to='/app' className='btn'>Use App</Link>
+            <Link to="/app" className="btn">
+              Use App
+            </Link>
           </div>
         ) : (
           <>

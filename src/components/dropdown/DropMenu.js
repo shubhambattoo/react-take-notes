@@ -1,35 +1,32 @@
 import React, { useContext } from 'react';
-import './Dropdown.scss';
+import './DropMenu.scss';
 import { GlobalContext } from '../../context/GlobalState';
 import PropTypes from 'prop-types';
+import { Menu, Dropdown } from 'antd';
 
-export const Dropdown = ({ moreStyles, id, close, isFav, inTrash }) => {
+export const DropMenu = ({ id, isFav, inTrash }) => {
   const { favNote, deleteNote, unFavNote, permanentDelete } = useContext(
     GlobalContext
   );
 
   const handleFavNote = () => {
     favNote(id);
-    close(true);
   };
 
   const handleDeleteNote = () => {
     deleteNote(id);
-    close(true);
   };
 
   function handleUnFavNote() {
     unFavNote(id);
-    close(true);
   }
 
   function handlePermanentDelete() {
     permanentDelete(id);
-    close(true);
   }
 
-  return (
-    <div style={moreStyles} className="dropdown-menu">
+  const trashMenuItem = (
+    <>
       {inTrash ? (
         <div className="dropdown-menu__item" onClick={handlePermanentDelete}>
           <div className="dropdown-menu__item__icon">
@@ -45,29 +42,43 @@ export const Dropdown = ({ moreStyles, id, close, isFav, inTrash }) => {
           <div className="dropdown-menu__item__text">Trash</div>
         </div>
       )}
-      {isFav ? (
-        <div className="dropdown-menu__item" onClick={handleUnFavNote}>
-          <div className="dropdown-menu__item__icon">
-            <i className="material-icons">favorite</i>
+    </>
+  );
+
+  const menu = (
+    <Menu className="dropdown-menu">
+      <Menu.Item key="0">{trashMenuItem}</Menu.Item>
+      <Menu.Item key="1">
+        {isFav ? (
+          <div className="dropdown-menu__item" onClick={handleUnFavNote}>
+            <div className="dropdown-menu__item__icon">
+              <i className="material-icons">favorite</i>
+            </div>
+            <div className="dropdown-menu__item__text">Un-Favorite</div>
           </div>
-          <div className="dropdown-menu__item__text">Un-Favorite</div>
-        </div>
-      ) : (
-        <div className="dropdown-menu__item" onClick={handleFavNote}>
-          <div className="dropdown-menu__item__icon">
-            <i className="material-icons">favorite_border</i>
+        ) : (
+          <div className="dropdown-menu__item" onClick={handleFavNote}>
+            <div className="dropdown-menu__item__icon">
+              <i className="material-icons">favorite_border</i>
+            </div>
+            <div className="dropdown-menu__item__text">Favorite</div>
           </div>
-          <div className="dropdown-menu__item__text">Favorite</div>
-        </div>
-      )}
-    </div>
+        )}
+      </Menu.Item>
+    </Menu>
+  );
+
+  return (
+    <Dropdown overlay={menu} trigger={['click']}>
+      <i className="material-icons" onClick={(e) => e.preventDefault()}>
+        more_horiz
+      </i>
+    </Dropdown>
   );
 };
 
-Dropdown.propTypes = {
-  moreStyles: PropTypes.object,
+DropMenu.propTypes = {
   id: PropTypes.number,
-  close: PropTypes.func,
   isFav: PropTypes.bool,
   inTrash: PropTypes.bool,
 };

@@ -8,6 +8,7 @@ export const DELETE_NOTE = 'DELETE_NOTE';
 export const UNFAV_NOTE = 'UNFAV_NOTE';
 export const PERMANENT_DELETE = 'PERMANENT_DELETE';
 export const SET_APPSTATE = 'SET_APPSTATE';
+export const TOGGLE_LEFTMENU = 'TOGGLE_LEFTMENU';
 
 export default (state, action) => {
   switch (action.type) {
@@ -54,6 +55,8 @@ export default (state, action) => {
       return { ...state, ...permanentDelete(state.trash, action.payload) };
     case SET_APPSTATE:
       return { ...state, ...setCompleteState(action.payload) };
+    case TOGGLE_LEFTMENU:
+      return { ...state, leftMenuShown: !state.leftMenuShown };
     default:
       return state;
   }
