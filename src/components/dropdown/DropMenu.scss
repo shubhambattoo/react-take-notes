@@ -5,10 +5,10 @@
 
   &__item {
     display: grid;
-    grid-template-columns: 30px auto;
+    grid-template-columns: 40px auto;
     align-items: center;
     color: #333;
-    padding: 4px 20px;
+    padding: 0 15px;
 
     &:not(:last-child) {
       border-bottom: 1px solid #38383834;
@@ -19,7 +19,7 @@
     }
 
     &__text {
-      font-size: 12px;
+      font-size: 14px;
     }
   }
 }

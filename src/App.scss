@@ -23,8 +23,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-main {
+.main {
   display: flex;
+}
+
+.aside-hidden {
+  height: calc(100vh - 6.8rem)
 }
 
 section.home {

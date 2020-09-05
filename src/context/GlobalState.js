@@ -10,6 +10,7 @@ import AppReducer, {
   UNFAV_NOTE,
   SELECT_NOTE,
   SET_APPSTATE,
+  TOGGLE_LEFTMENU,
 } from './AppReducer';
 
 const initialState = {
@@ -30,6 +31,7 @@ const initialState = {
   favNotes: [],
   trash: [],
   selectedNote: null,
+  leftMenuShown: true,
 };
 
 // Create Context
@@ -42,6 +44,8 @@ export const GlobalProvider = ({ children }) => {
   useEffect(() => {
     const item = localStorage.getItem('appState');
     const appState = JSON.parse(item);
+    console.log('inital', Object.keys(initialState));
+    console.log('local', appState);
     if (item) {
       dispatch({ type: SET_APPSTATE, payload: appState });
     }
@@ -87,6 +91,10 @@ export const GlobalProvider = ({ children }) => {
     dispatch({ type: SELECT_NOTE, payload: id });
   }
 
+  function toggleLeftMenu() {
+    dispatch({ type: TOGGLE_LEFTMENU });
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -98,6 +106,7 @@ export const GlobalProvider = ({ children }) => {
         selectedNote: state.selectedNote,
         favNotes: state.favNotes,
         trash: state.trash,
+        leftMenuShown: state.leftMenuShown,
         addCategory,
         selectAction,
         addNote,
@@ -107,6 +116,7 @@ export const GlobalProvider = ({ children }) => {
         unFavNote,
         permanentDelete,
         selectNote,
+        toggleLeftMenu
       }}
     >
       {children}
