@@ -28,7 +28,6 @@ const initialState = {
   categories: [],
   selectedCategory: null,
   notes: [],
-  trash: [],
   selectedNote: null,
   leftMenuShown: true,
 };
@@ -101,7 +100,6 @@ export const GlobalProvider = ({ children }) => {
         selectedCategory: state.selectedCategory,
         notes: state.notes,
         selectedNote: state.selectedNote,
-        trash: state.trash,
         leftMenuShown: state.leftMenuShown,
         addCategory,
         selectAction,
@@ -112,7 +110,7 @@ export const GlobalProvider = ({ children }) => {
         unFavNote,
         permanentDelete,
         selectNote,
-        toggleLeftMenu
+        toggleLeftMenu,
       }}
     >
       {children}

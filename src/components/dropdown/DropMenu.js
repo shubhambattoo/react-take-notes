@@ -82,7 +82,7 @@ export const DropMenu = ({ id, isFav, inTrash }) => {
 };
 
 DropMenu.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.string,
   isFav: PropTypes.bool,
   inTrash: PropTypes.bool,
 };

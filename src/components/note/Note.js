@@ -22,7 +22,7 @@ export const Note = ({ note }) => {
 
 Note.propTypes = {
   note: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     created: PropTypes.number,
     updated: PropTypes.number,
     content: PropTypes.string,
