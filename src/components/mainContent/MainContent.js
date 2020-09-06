@@ -9,7 +9,7 @@ import { AddNote } from '../addNote/AddNote';
 import ReactMarkdown from 'react-markdown';
 
 export const MainContent = () => {
-  const { selectedNote, updateNote } = useContext(GlobalContext);
+  const { selectedNote, updateNote, notes } = useContext(GlobalContext);
   const [code, setCode] = useState('');
   const [isPreview, setIsPreview] = useState(false);
 
@@ -51,8 +51,10 @@ export const MainContent = () => {
         <NoteList />
       </div>
 
-      {!selectedNote ? (
+      {!notes.length ? (
         <div className="note-container__no-notes">No note added add now</div>
+      ) : !selectedNote ? (
+        <div className="note-container__no-notes">No note selected</div>
       ) : (
         <div className="note-container__selected-note">
           <button onClick={togglePreview}>

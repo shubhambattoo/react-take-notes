@@ -45,26 +45,30 @@ export const DropMenu = ({ id, isFav, inTrash }) => {
     </>
   );
 
+  const favMenuItem = (
+    <>
+      {isFav ? (
+        <div className="dropdown-menu__item" onClick={handleUnFavNote}>
+          <div className="dropdown-menu__item__icon">
+            <i className="material-icons">favorite</i>
+          </div>
+          <div className="dropdown-menu__item__text">Un-Favorite</div>
+        </div>
+      ) : (
+        <div className="dropdown-menu__item" onClick={handleFavNote}>
+          <div className="dropdown-menu__item__icon">
+            <i className="material-icons">favorite_border</i>
+          </div>
+          <div className="dropdown-menu__item__text">Favorite</div>
+        </div>
+      )}
+    </>
+  );
+
   const menu = (
     <Menu className="dropdown-menu">
       <Menu.Item key="0">{trashMenuItem}</Menu.Item>
-      <Menu.Item key="1">
-        {isFav ? (
-          <div className="dropdown-menu__item" onClick={handleUnFavNote}>
-            <div className="dropdown-menu__item__icon">
-              <i className="material-icons">favorite</i>
-            </div>
-            <div className="dropdown-menu__item__text">Un-Favorite</div>
-          </div>
-        ) : (
-          <div className="dropdown-menu__item" onClick={handleFavNote}>
-            <div className="dropdown-menu__item__icon">
-              <i className="material-icons">favorite_border</i>
-            </div>
-            <div className="dropdown-menu__item__text">Favorite</div>
-          </div>
-        )}
-      </Menu.Item>
+      {!inTrash && <Menu.Item key="1">{favMenuItem}</Menu.Item>}
     </Menu>
   );
 
