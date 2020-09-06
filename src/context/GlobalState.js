@@ -28,7 +28,6 @@ const initialState = {
   categories: [],
   selectedCategory: null,
   notes: [],
-  favNotes: [],
   trash: [],
   selectedNote: null,
   leftMenuShown: true,
@@ -44,8 +43,6 @@ export const GlobalProvider = ({ children }) => {
   useEffect(() => {
     const item = localStorage.getItem('appState');
     const appState = JSON.parse(item);
-    console.log('inital', Object.keys(initialState));
-    console.log('local', appState);
     if (item) {
       dispatch({ type: SET_APPSTATE, payload: appState });
     }
@@ -104,7 +101,6 @@ export const GlobalProvider = ({ children }) => {
         selectedCategory: state.selectedCategory,
         notes: state.notes,
         selectedNote: state.selectedNote,
-        favNotes: state.favNotes,
         trash: state.trash,
         leftMenuShown: state.leftMenuShown,
         addCategory,
