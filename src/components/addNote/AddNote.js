@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import { GlobalContext } from '../../context/GlobalState';
+import shortId from 'shortid';
 
 export const AddNote = () => {
-  const { notes, addNote } = useContext(GlobalContext);
+  const { addNote } = useContext(GlobalContext);
 
   function handleAddNote() {
     const note = {
-      id: notes.length + 1,
+      id: shortId(),
       created: Date.now(),
       updated: Date.now(),
       content: '',
@@ -14,7 +15,7 @@ export const AddNote = () => {
       isActive: true,
       isNew: true,
       isFav: false,
-      inTrash: false
+      inTrash: false,
     };
     addNote(note);
   }

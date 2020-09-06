@@ -29,6 +29,8 @@ export default (state, action) => {
       const newNotes = [...state.notes, action.payload];
       return {
         ...state,
+        actions: changeActive(state.actions, 'all'),
+        selectedAction: selectActive(state.actions, 'all'),
         notes: changeActive(newNotes, action.payload.id),
         selectedNote: selectNote(newNotes, action.payload.id),
       };
@@ -53,7 +55,7 @@ export default (state, action) => {
     case UNFAV_NOTE:
       return { ...state, ...unFavNote(state, action.payload) };
     case PERMANENT_DELETE:
-      return { ...state, ...permanentDelete(state.trash, action.payload) };
+      return { ...state, ...permanentDelete(state.notes, action.payload) };
     case SET_APPSTATE:
       return { ...state, ...setCompleteState(action.payload) };
     case TOGGLE_LEFTMENU:
@@ -92,7 +94,9 @@ function updateNote(notes, note) {
 function favNote(state, id) {
   const { notes } = state;
   const finalNotes = notes.map((n) => {
-    n.isFav = n.id === id;
+    if (n.id === id) {
+      n.isFav = true;
+    }
     return n;
   });
   return {
@@ -112,18 +116,18 @@ function unFavNote(state, id) {
 }
 
 function deleteNote(state, id) {
-  const { trash, notes } = state;
-  const note = notes.find((el) => el.id === id);
-  const nts = notes.filter((n) => n.id !== id);
-  note.inTrash = true;
-  note.isActive = false;
-  return {
-    notes: [...nts],
-    trash: [...trash, note],
-  };
+  const { notes } = state;
+  const nts = notes.map((n) => {
+    if (n.id === id) {
+      n.inTrash = true;
+      n.isActive = false;
+    }
+    return n;
+  });
+  return { notes: nts, selectedNote: null };
 }
 
-function permanentDelete(deletedNotes, id) {
-  const trash = deletedNotes.filter((n) => n.id !== id);
-  return { trash };
+function permanentDelete(allNotes, id) {
+  const notes = allNotes.filter((n) => n.id !== id);
+  return { notes, selectedNote: null };
 }
