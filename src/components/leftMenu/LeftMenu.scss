@@ -78,7 +78,7 @@
 
     &__add {
       @extend .card;
-      transition: 0.2s;
+      transition: color 0.2s;
       margin-top: 0.5em;
 
       &:hover {

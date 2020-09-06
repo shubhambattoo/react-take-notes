@@ -22,6 +22,7 @@ export default (state, action) => {
         ...state,
         actions: changeActive(state.actions, action.payload),
         selectedAction: selectActive(state.actions, action.payload),
+        notes: state.notes.map((n) => ({ ...n, isActive: false })),
         selectedNote: null,
       };
     case ADD_NOTE:
@@ -89,28 +90,24 @@ function updateNote(notes, note) {
 }
 
 function favNote(state, id) {
-  const { favNotes, notes } = state;
-  const note = notes.find((el) => el.id === id);
+  const { notes } = state;
   const finalNotes = notes.map((n) => {
     n.isFav = n.id === id;
     return n;
   });
   return {
     notes: finalNotes,
-    favNotes: [...favNotes, note],
   };
 }
 
 function unFavNote(state, id) {
-  const { favNotes, notes } = state;
-  const note = notes.find((el) => el.id === id);
+  const { notes } = state;
   const finalNotes = notes.map((n) => {
     n.isFav = n.id === id && false;
     return n;
   });
   return {
     notes: finalNotes,
-    favNotes: [...favNotes, note],
   };
 }
 
