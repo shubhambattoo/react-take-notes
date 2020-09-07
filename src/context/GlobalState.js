@@ -35,17 +35,15 @@ const initialState = {
 // Create Context
 export const GlobalContext = createContext(initialState);
 
+function initState() {
+  const item = localStorage.getItem('appState');
+  const appState = JSON.parse(item);
+  return item ? appState : initialState;
+}
+
 // Provider Component
 export const GlobalProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(AppReducer, initialState);
-
-  useEffect(() => {
-    const item = localStorage.getItem('appState');
-    const appState = JSON.parse(item);
-    if (item) {
-      dispatch({ type: SET_APPSTATE, payload: appState });
-    }
-  }, []);
+  const [state, dispatch] = useReducer(AppReducer, initialState, initState);
 
   useEffect(() => {
     localStorage.setItem('appState', JSON.stringify(state));
@@ -91,6 +89,10 @@ export const GlobalProvider = ({ children }) => {
     dispatch({ type: TOGGLE_LEFTMENU });
   }
 
+  function resetState() {
+    dispatch({ type: SET_APPSTATE });
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -111,6 +113,7 @@ export const GlobalProvider = ({ children }) => {
         permanentDelete,
         selectNote,
         toggleLeftMenu,
+        resetState,
       }}
     >
       {children}
