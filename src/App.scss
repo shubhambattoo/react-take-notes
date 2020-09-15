@@ -28,7 +28,7 @@ body {
 }
 
 .aside-hidden {
-  height: calc(100vh - 6.8rem)
+  height: calc(100vh - 6.8rem);
 }
 
 section.home {
@@ -114,6 +114,21 @@ section.home {
     width: 85%;
     text-align: center;
     filter: drop-shadow(0 0 3rem rgb(109, 109, 109));
+  }
+
+  @media screen and (max-width: 768px) {
+    margin: 3rem 0;
+
+    .text {
+      h1 {
+        text-align: center;
+        font-size: 3.5rem;
+      }
+
+      p {
+        text-align: justify;
+      }
+    }
   }
 }
 

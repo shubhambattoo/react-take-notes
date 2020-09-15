@@ -73,7 +73,6 @@ nav {
   }
 
   .right {
-    cursor: pointer;
     align-self: center;
     margin: 0 0.5rem 0 0;
 
@@ -115,8 +114,26 @@ nav {
 
         &:hover,
         &:active {
-          background-color:  #148091;
+          background-color: #148091;
         }
+      }
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    .left {
+      .logo {
+        height: 2.7rem;
+      }
+    }
+
+    .right.buttons {
+      a.btn,
+      a.btn:link,
+      button {
+        font-size: 1.2rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
       }
     }
   }
