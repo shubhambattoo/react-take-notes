@@ -10,7 +10,7 @@ export const PERMANENT_DELETE = 'PERMANENT_DELETE';
 export const SET_APPSTATE = 'SET_APPSTATE';
 export const TOGGLE_LEFTMENU = 'TOGGLE_LEFTMENU';
 
-export default (state, action) => {
+const APPREDUCER = (state, action) => {
   switch (action.type) {
     case ADD_CATEGORY:
       return {
@@ -131,3 +131,5 @@ function permanentDelete(allNotes, id) {
   const notes = allNotes.filter((n) => n.id !== id);
   return { notes, selectedNote: null };
 }
+
+export default APPREDUCER;
