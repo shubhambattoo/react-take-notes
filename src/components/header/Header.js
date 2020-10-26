@@ -2,6 +2,7 @@ import React, { useContext, useCallback } from 'react';
 import './Header.scss';
 import { useLocation, Link } from 'react-router-dom';
 import { GlobalContext } from '../../context/GlobalState';
+import logo from './../../assets/img/logo.png';
 
 export const Header = () => {
   const match = useLocation();
@@ -27,7 +28,7 @@ export const Header = () => {
           )}
           <Link to="/" title="Take Notes">
             <img
-              src={require('./../../assets/img/logo.png')}
+              src={logo}
               className="logo"
               alt="Take Notes"
             />

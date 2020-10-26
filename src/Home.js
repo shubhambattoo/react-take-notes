@@ -1,6 +1,7 @@
 import React from 'react';
 import { Header } from './components/header/Header';
 import { Link } from 'react-router-dom';
+import screen from './assets/img/snapshot.png';
 
 const Home = () => {
   return (
@@ -18,7 +19,7 @@ const Home = () => {
                 </p>
               </div>
               <div className="actions">
-                <Link to='/app'>Let's Start</Link>
+                <Link to="/app">Let's Start</Link>
                 <p>TakeNotes the simple way for free. Forever.</p>
               </div>
             </div>
@@ -27,7 +28,7 @@ const Home = () => {
           <div className="row">
             <div className="col-1 col-1--centered">
               <img
-                src={require('./../src/assets/img/snapshot.png')}
+                src={screen}
                 alt="snapshot of TakeNotes Application"
                 className="snapshot"
               />
