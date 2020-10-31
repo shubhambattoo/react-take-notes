@@ -7,7 +7,7 @@
 
   &__add-note {
     display: grid;
-    grid-template-columns: 4rem auto;
+    grid-template-columns: 3rem auto;
     font-size: 1.6rem;
     color: rgb(0, 0, 0);
     padding: 1rem 1rem 1.5rem;
@@ -56,6 +56,10 @@
         background-color: #5183f5;
         font-weight: 500;
         color: #fff;
+
+        .icon i {
+          color: #fff !important;
+        }
       }
 
       &__content {
@@ -64,6 +68,13 @@
         overflow: hidden;
         text-overflow: clip;
         margin-right: 34px;
+        display: grid;
+        grid-template-columns: 3rem auto;
+
+        .icon i {
+          font-size: 2rem;
+          color: #222;
+        }
       }
 
       &__option {
